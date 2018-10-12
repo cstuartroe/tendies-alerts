@@ -1,3 +1,5 @@
 venv
 __pycache__
 subs.json
+wsgi.py
+uwsgi_params
