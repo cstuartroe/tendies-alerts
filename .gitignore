@@ -3,3 +3,4 @@ __pycache__
 subs.json
 wsgi.py
 uwsgi_params
+api_secrets.py
