@@ -22,13 +22,15 @@ def get_chicken():
     meals = [list(meal.p) for meal in meals]
     
     mealmenus = [set(list(clean(meal))) for meal in meals]
-    mealnames = ["Breakfast","Lunch","Dinner"]
-    out = {"Breakfast":[],"Lunch":[],"Dinner":[]}
+    mealnames = ["breakfast","lunch","dinner"]
+    out = {"breakfast":[],"lunch":[],"dinner":[]}
 
     for menu, mealname in zip(mealmenus,mealnames):
             for food in menu:
-                if "chicken" in food.lower():
-                    out[mealname].append(food)
+                if food.lower() == "breaded chicken":
+                    out[mealname].append("tendies")
+                elif "oreo" in food.lower():
+                    out[mealname].append(food.lower())
     return out
 
 def sendmessage(message,number):
@@ -42,8 +44,12 @@ x = get_chicken()
 s = ""
 for mealname, chickentypes in x.items():
     if len(chickentypes) != 0:
-        s += "For %s there will be %s. " % (mealname, " and ".join(chickentypes))
+        s += "For %s there will be %s! " % (mealname, " and ".join(chickentypes))
 if s == "":
-    s = "No chicken today :("
-sendmessage(s,"+18287850136")
+    s = "No tendies today :("
+
+with open("subs.json","r") as fh:
+    subs = json.load(fh)
+for phone_number in subs:
+    sendmessage(s,phone_number)
 
