@@ -10,7 +10,7 @@ def hello():
 
 @application.route("/sms", methods=["POST"])
 def sms_reply():
-    body = request.values.get('Body', None).lower()
+    body = request.values.get('Body', None).lower().strip()
     sender = request.values.get('From',None)
     resp = MessagingResponse()
     with open("subs.json","r") as fh:
