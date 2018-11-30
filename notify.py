@@ -2,6 +2,7 @@ from urllib import request as ur
 from bs4 import BeautifulSoup as bs
 from twilio.rest import Client
 from api_secrets import *
+import json
 
 client = Client(account_sid, auth_token)
 
@@ -34,22 +35,23 @@ def get_chicken():
     return out
 
 def sendmessage(message,number):
-	print(message)
-	message = client.messages.create(
-		to=number, 
-		from_="+12245058742",
-		body=message)
+    print(number + ": " + message)
+    message = client.messages.create(
+        to=number, 
+        from_="+12245058742",
+        body=message)
 
 x = get_chicken()
 s = ""
 for mealname, chickentypes in x.items():
     if len(chickentypes) != 0:
         s += "For %s there will be %s! " % (mealname, " and ".join(chickentypes))
-if s == "":
-    s = "No tendies today :("
 
 with open("subs.json","r") as fh:
     subs = json.load(fh)
-for phone_number in subs:
-    sendmessage(s,phone_number)
 
+if s != "":
+    for phone_number in subs:
+        sendmessage(s,phone_number)
+else:
+    sendmessage("Haverford Tendies Alerts is working","+18287850136")
