@@ -53,5 +53,3 @@ with open("subs.json","r") as fh:
 if s != "":
     for phone_number in subs:
         sendmessage(s,phone_number)
-else:
-    sendmessage("Haverford Tendies Alerts is working","+18287850136")

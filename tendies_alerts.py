@@ -28,6 +28,11 @@ def sms_reply():
             resp.message("You have been successfully unsubscribed from Haverford Tendies Alerts!")
         else:
             resp.message("You are not subscribed to Haverford Tendies Alerts.")
+    elif body == "subs":
+        if sender == "+18287850136":
+            resp.message(str(subs))
+        else:
+            resp.message("You are not authorized to receive that information.")
     else:
         resp.message("Hi! This is Haverford Tendies Alerts! Please text \"i luv tendies\" to subscribe or \"i h8 tendies\" to unsubscribe.")
     
